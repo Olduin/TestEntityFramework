@@ -61,7 +61,7 @@
             this.btnAddUser.TabIndex = 3;
             this.btnAddUser.Text = "Добавить пользователя";
             this.btnAddUser.UseVisualStyleBackColor = true;
-          
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
             // cbFilterPosition
             // 
@@ -75,7 +75,6 @@
             this.cbFilterPosition.Name = "cbFilterPosition";
             this.cbFilterPosition.Size = new System.Drawing.Size(121, 21);
             this.cbFilterPosition.TabIndex = 4;
-
             // 
             // button1
             // 
@@ -85,8 +84,9 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "Изменить";
             this.button1.UseVisualStyleBackColor = true;
+
             // 
-            // LibrarianForm
+            // Employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -96,7 +96,7 @@
             this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.LbPositionFilter);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "LibrarianForm";
+            this.Name = "Employee";
             this.Text = "LibrarianForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

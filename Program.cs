@@ -15,10 +15,13 @@ namespace TestEntityFramework
         [STAThread]
         static void Main()
         {
+            TestDbContext dbContext = new TestDbContext();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            MyAppContext myAppContext = new MyAppContext();
-            Application.Run(myAppContext);
+           // MyAppContext myAppContext = new MyAppContext(); //пока выкинул MyAppContext из приложения
+
+            Application.Run(new Form1((new UsersRepository(dbContext)),PersronRepository ));
         }
     }
 }

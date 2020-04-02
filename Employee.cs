@@ -22,7 +22,14 @@ namespace TestEntityFramework
             InitializeComponent();
             //this.dataGridView1.DataSource = myAppContext.GetUsers().Tables["Users"];
         }
-      
+
+   
+
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
         /*
         private void cbFilterPosition_SelectedIndexChanged(object sender, EventArgs e)
         {

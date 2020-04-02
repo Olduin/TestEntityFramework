@@ -7,40 +7,56 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestEntityFramework.Models;
 
 namespace TestEntityFramework
 {
     public partial class EditUserForm : Form
     {
-        private User user;
-        private MyAppContext myAppContext;
-        public delegate void UserActionHandler(object sender, EventArgsUserAction e);
+        User user;
 
-        public EditUserForm(MyAppContext myAppContext, User user)
+        public EditUserForm(User user, List<Person> persons)
         {
-            this.myAppContext = myAppContext;
             this.user = user;
-
             InitializeComponent();
+
+            tbId.DataBindings.Add("Text", user, "Id");
+            tbLogin.DataBindings.Add("Text", user, "Login");
+            tbPassword.DataBindings.Add("Text", user, "Password");
+
+            cbPersons.DisplayMember = "FullName";
+            cbPersons.ValueMember = "Id";
+            cbPersons.DataSource = persons;
+
+            if (user?.Person != null)
+            {
+                var currentPerson = persons.FirstOrDefault(p => p == user.Person);
+
+                if (currentPerson != null)
+                    cbPersons.SelectedItem = currentPerson;
+            }
+
+            cbPersons.SelectedIndexChanged += OnPersonChanged;
         }
 
-        public event UserActionHandler UserAction;
-
-        private void btnSave_Click(object sender, EventArgs e)
+        private void OnPersonChanged(object sender, EventArgs e)
         {
-            user.Login = tbUserName.Text;
-            user.Password = tbPassword.Text;
+            Person person = cbPersons.SelectedItem as Person;
 
-            if (UserAction == null)
-                return;
-            UserAction(this, new EventArgsUserAction(FormUserAction.Save));
+            if (user.Person == person) return;
+
+            user.Person = person;
         }
 
+        private void bEnter_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
+
+    
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            if (UserAction == null)
-                return;
-            UserAction(this, new EventArgsUserAction(FormUserAction.Cansel));
+            this.Close();
         }
     }
 }
