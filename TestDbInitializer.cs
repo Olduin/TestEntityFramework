@@ -12,6 +12,15 @@ namespace TestEntityFramework
     {
         protected override void Seed(TestDbContext dbContext)
         {
+            IList<Role> roles = new List<Role>
+            {
+                new Role {Name = "Библиотекарь"},
+                new Role {Name = "Работник отдела кадров"}
+                //new Role { Name = "Читатель" }
+            };
+
+            dbContext.Roles.AddRange(roles);
+
             IList<Person> person = new List<Person>
             {
                 new Person { FirstName = "Ivan", LastName = "Petrov" },
@@ -22,18 +31,12 @@ namespace TestEntityFramework
 
             IList<User> users = new List<User>
             {
-                new User { Login = "ivan", Password = "1234", Person = person[0] },
-                new User {Login = "Petr", Password = "1234", Person = person[1] }
+                new User {Login = "ivan", Password = "1234", Person = person[0], Role = roles[0]},
+                new User {Login = "Petr", Password = "1234", Person = person[1], Role = roles[1] }
             };  
 
             dbContext.Users.AddRange(users);
-
-            IList<Role> roles = new List<Role>
-            {
-                new Role {Name = "Библиотекарь"},
-                new Role {Name = "Работник отдела кадров"}
-            };
-
+            
             dbContext.SaveChanges();
         }
     }

@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.Entity;
 using TestEntityFramework.Models;
 
 namespace TestEntityFramework
 {
-    public class PersronRepository
+    public class RolesRepository
     {
         private TestDbContext dbContext;
 
-        public List<Person> GetPersons()
+        public RolesRepository(TestDbContext dbContext)
         {
-            return dbContext.Persons.ToList();
+            this.dbContext = dbContext;
+        }
+
+
+        public List<Role> GetRoles()
+        {
+            return dbContext.Roles.ToList();
         }
     }
 }

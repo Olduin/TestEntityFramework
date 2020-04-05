@@ -13,50 +13,74 @@ namespace TestEntityFramework
 {
     public partial class EditUserForm : Form
     {
-        User user;
 
-        public EditUserForm(User user, List<Person> persons)
+        private EditUserContext editUserContext;
+
+        public EditUserForm(EditUserContext editUserContext)
         {
-            this.user = user;
+            this.editUserContext = editUserContext;
             InitializeComponent();
 
-            tbId.DataBindings.Add("Text", user, "Id");
-            tbLogin.DataBindings.Add("Text", user, "Login");
-            tbPassword.DataBindings.Add("Text", user, "Password");
+            tbId.DataBindings.Add("Text", editUserContext.User, "Id");
+            tbLogin.DataBindings.Add("Text", editUserContext.User, "Login");
+            tbPassword.DataBindings.Add("Text", editUserContext.User, "Password");
 
             cbPersons.DisplayMember = "FullName";
             cbPersons.ValueMember = "Id";
-            cbPersons.DataSource = persons;
+            cbPersons.DataSource = editUserContext.Persons;
 
-            if (user?.Person != null)
+            cbRole.DisplayMember = "Name";
+            cbRole.ValueMember = "Id";
+            cbRole.DataSource = editUserContext.Roles;
+
+            if (editUserContext.User?.Person != null)
             {
-                var currentPerson = persons.FirstOrDefault(p => p == user.Person);
+                var currentPerson = editUserContext.Persons.FirstOrDefault(p => p == editUserContext.User.Person);
 
-                if (currentPerson != null)
+                if (currentPerson != null) 
                     cbPersons.SelectedItem = currentPerson;
             }
 
             cbPersons.SelectedIndexChanged += OnPersonChanged;
+
+            if (editUserContext.User?.Role != null)
+            {
+                var currentRole = editUserContext.Roles.FirstOrDefault(r => r == editUserContext.User.Role);
+
+                if (currentRole != null)
+                    cbRole.SelectedItem = currentRole;
+            }
+
+            cbRole.SelectedIndexChanged += OnRoleChanged;
         }
 
         private void OnPersonChanged(object sender, EventArgs e)
         {
             Person person = cbPersons.SelectedItem as Person;
 
-            if (user.Person == person) return;
+            if (editUserContext.User.Person == person) return;
 
-            user.Person = person;
+            editUserContext.User.Person = person;
         }
 
-        private void bEnter_Click(object sender, EventArgs e)
+        private void OnRoleChanged(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-        }
+            Role role = cbRole.SelectedItem as Role;
 
-    
+            if (editUserContext.User.Role == role) return;
+
+            editUserContext.User.Role = role;
+        }
+                    
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
+
     }
 }

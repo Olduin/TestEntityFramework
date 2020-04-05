@@ -35,7 +35,7 @@
             this.tsbAddUser = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabelFilter = new System.Windows.Forms.ToolStripLabel();
-            this.tscbPersons = new System.Windows.Forms.ToolStripComboBox();
+            this.tscbRole = new System.Windows.Forms.ToolStripComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +61,7 @@
             this.tsbAddUser,
             this.toolStripSeparator2,
             this.toolStripLabelFilter,
-            this.tscbPersons});
+            this.tscbRole});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 25);
@@ -94,11 +94,11 @@
             this.toolStripLabelFilter.Size = new System.Drawing.Size(64, 22);
             this.toolStripLabelFilter.Text = "Фильтр";
             // 
-            // tscbPersons
+            // tscbRole
             // 
-            this.tscbPersons.Name = "tscbPersons";
-            this.tscbPersons.Size = new System.Drawing.Size(121, 25);
-            this.tscbPersons.SelectedIndexChanged += new System.EventHandler(this.OnTscbPersons_Changed);
+            this.tscbRole.Name = "tscbRole";
+            this.tscbRole.Size = new System.Drawing.Size(121, 25);
+            this.tscbRole.SelectedIndexChanged += new System.EventHandler(this.OnTscbRole_Changed);
             // 
             // Form1
             // 
@@ -125,7 +125,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripLabel toolStripLabelFilter;
-        private System.Windows.Forms.ToolStripComboBox tscbPersons;
+        private System.Windows.Forms.ToolStripComboBox tscbRole;
     }
 }
 

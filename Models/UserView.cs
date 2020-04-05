@@ -17,5 +17,8 @@ namespace TestEntityFramework.Models
 
         [DisplayName("Личность")]
         public string PersonName { get; set; }
+
+        [DisplayName("Должность")]
+        public string role { get; set; }
     }
 }

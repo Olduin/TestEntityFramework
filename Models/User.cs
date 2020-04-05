@@ -1,6 +1,7 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using TestEntityFramework.Models;
 
 namespace TestEntityFramework
 {
@@ -22,6 +23,10 @@ namespace TestEntityFramework
 
         [Display(Name = "Личность")]
         public virtual Person Person { get; set; }
+
+        [Display(Name = "Должность")]
+        public virtual Role Role { get; set; }
+
     }
 
 }

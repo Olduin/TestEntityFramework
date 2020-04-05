@@ -57,6 +57,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthInformationDTO.cs" />
+    <Compile Include="AutorizationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutorizationForm.Designer.cs">
+      <DependentUpon>AutorizationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditUserContext.cs" />
+    <Compile Include="PersonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonForm.Designer.cs">
+      <DependentUpon>PersonForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RunContext.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,13 +85,15 @@
     <Compile Include="EditUserForm.designer.cs">
       <DependentUpon>EditUserForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\AuthUser.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\PersonView.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="RolesRepository.cs" />
     <Compile Include="Models\RoleView.cs" />
     <Compile Include="Models\UserView.cs" />
     <Compile Include="Models\Person.cs" />
-    <Compile Include="PersronRepository.cs" />
+    <Compile Include="PersonRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -89,6 +106,9 @@
     <Compile Include="UsersRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AutorizationForm.resx">
+      <DependentUpon>AutorizationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditUserForm.resx">
       <DependentUpon>EditUserForm.cs</DependentUpon>
     </EmbeddedResource>

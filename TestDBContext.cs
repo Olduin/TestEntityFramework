@@ -19,5 +19,9 @@ namespace TestEntityFramework
         public DbSet<User> Users { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<Role> Roles { get; set; }
+
+        private UsersRepository usersRepository;
+
+       
     }
 }

@@ -38,6 +38,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.tbId = new System.Windows.Forms.TextBox();
             this.lbId = new System.Windows.Forms.Label();
+            this.cbRole = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tbLogin
@@ -91,16 +93,17 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(295, 121);
+            this.btnSave.Location = new System.Drawing.Point(295, 163);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Сохранить";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(203, 121);
+            this.btnCancel.Location = new System.Drawing.Point(203, 163);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 9;
@@ -124,11 +127,30 @@
             this.lbId.TabIndex = 10;
             this.lbId.Text = "№ сотрудника";
             // 
+            // cbRole
+            // 
+            this.cbRole.FormattingEnabled = true;
+            this.cbRole.Location = new System.Drawing.Point(126, 119);
+            this.cbRole.Name = "cbRole";
+            this.cbRole.Size = new System.Drawing.Size(244, 21);
+            this.cbRole.TabIndex = 13;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(55, 122);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Должность";
+            // 
             // EditUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 163);
+            this.ClientSize = new System.Drawing.Size(379, 198);
+            this.Controls.Add(this.cbRole);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.tbId);
             this.Controls.Add(this.lbId);
             this.Controls.Add(this.btnCancel);
@@ -157,5 +179,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox tbId;
         private System.Windows.Forms.Label lbId;
+        private System.Windows.Forms.ComboBox cbRole;
+        private System.Windows.Forms.Label label1;
     }
 }

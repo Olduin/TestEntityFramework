@@ -13,16 +13,17 @@ namespace TestEntityFramework
 {
     public partial class Form1 : Form
     {
-        UsersRepository usersRepository;
-        PersronRepository persronRepository;
-        public Form1(UsersRepository usersRepository, PersronRepository persronRepository)
+        private RunContext runContext;
+
+
+        public Form1(RunContext runContext )
         {
-            this.usersRepository = usersRepository;
+            this.runContext = runContext;
 
             InitializeComponent();
 
-            dataGridView1.DataSource = usersRepository.GetUsers();
-            tscbPersons.Items.AddRange(persronRepository.GetPersons().ToArray());
+            dataGridView1.DataSource = runContext.UsersRepository.GetUsers();
+            tscbRole.Items.AddRange(runContext.RolesRepository.GetRoles().ToArray());
         }
 
         private void dataGridView_CellDublieClick(object sender, DataGridViewCellEventArgs e)
@@ -31,47 +32,47 @@ namespace TestEntityFramework
 
             long userId = Convert.ToInt64(row.Cells[0].Value.ToString());
 
-            User user = usersRepository.GetUser(userId);
-            List<Person> persons = usersRepository.GetPersons();
+            User user = runContext.UsersRepository.GetUser(userId);
 
-            using (EditUserForm editUserForm = new EditUserForm(user, persons))
-            {
-                editUserForm.ShowDialog();
-
-                if (editUserForm.DialogResult != DialogResult.OK) return;
-
-                if (user.Id == 0)
-                    usersRepository.AddUser(user);
-                else
-                    usersRepository.UpdateUser(user);
-
-                dataGridView1.DataSource = usersRepository.GetUsers();
-            }
+            OpenEditUserDialog(user);
+                       
         }
 
         private void OnTsbAddUser_Click(object sender, EventArgs e)
         {
             User user = new User();
-            List<Person> persons = usersRepository.GetPersons();
 
-            using (EditUserForm userEditForm = new EditUserForm(user, persons))
+            OpenEditUserDialog(user);
+        }
+
+        private void OnTscbRole_Changed(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = runContext.UsersRepository.GetUsers(tscbRole.SelectedItem as Role);
+        }
+
+        private void OpenEditUserDialog(User user)
+        {
+            EditUserContext editUserContext = new EditUserContext
             {
-                userEditForm.ShowDialog();
+                User = user,
+                Persons = runContext.PersonRepository.GetPersons(),
+                Roles = runContext.RolesRepository.GetRoles()
+            };
 
-                if (userEditForm.DialogResult != DialogResult.OK) return;
+            using (EditUserForm editUserForm = new EditUserForm(editUserContext))
+            {
+                editUserForm.ShowDialog();
 
-                if (user.Id == 0)
-                    usersRepository.AddUser(user);
+                if (editUserForm.DialogResult != DialogResult.OK) return;
+
+                if (editUserContext.User.Id == 0)
+                    runContext.UsersRepository.AddUser(editUserContext.User);
                 else
-                    usersRepository.UpdateUser(user);
+                    runContext.UsersRepository.UpdateUser(editUserContext.User);
 
-                dataGridView1.DataSource = usersRepository.GetUsers();
+                dataGridView1.DataSource = runContext.UsersRepository.GetUsers();
             }
         }
 
-        private void OnTscbPersons_Changed(object sender, EventArgs e)
-        {
-            dataGridView1.DataSource = usersRepository.GetUsers(tscbPersons.SelectedItem as Person);
-        }
     }
 }

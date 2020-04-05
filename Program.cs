@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestEntityFramework.Models;
 
 namespace TestEntityFramework
 {
@@ -19,9 +20,11 @@ namespace TestEntityFramework
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-           // MyAppContext myAppContext = new MyAppContext(); //пока выкинул MyAppContext из приложения
+            // MyAppContext myAppContext = new MyAppContext(); //пока выкинул MyAppContext из приложения
 
-            Application.Run(new Form1((new UsersRepository(dbContext)),PersronRepository ));
+            Application.Run(new RunContext(dbContext));
+
+            //Application.Run(new Form1((new UsersRepository(dbContext)), new RolesRepository(dbContext)));
         }
     }
 }

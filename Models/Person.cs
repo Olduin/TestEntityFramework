@@ -1,6 +1,7 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using TestEntityFramework.Models;
 
 namespace TestEntityFramework
 {
@@ -18,7 +19,7 @@ namespace TestEntityFramework
         public string LastName { get; set; }
 
         [MaxLength(50)]
-        public string MiddleName { get; set; }
+        public string MiddleName { get; set; } 
 
         [Display(Name = "Полное имя")]
         public string FullName

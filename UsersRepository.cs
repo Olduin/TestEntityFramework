@@ -24,7 +24,8 @@ namespace TestEntityFramework
                 {
                     Id = user.Id,
                     Login = user.Login,
-                    PersonName = user.Person.FirstName + " " + user.Person.LastName + " " + user.Person.MiddleName
+                    PersonName = user.Person.FirstName + " " + user.Person.LastName + " " + user.Person.MiddleName,
+                    role = user.Role.Name
                 }).ToList();
         }
 
@@ -35,13 +36,32 @@ namespace TestEntityFramework
                 {
                     Id = user.Id,
                     Login = user.Login,
-                    PersonName = user.Person.FirstName + " " + user.Person.LastName + " " + user.Person.MiddleName
+                    PersonName = user.Person.FirstName + " " + user.Person.LastName + " " + user.Person.MiddleName,
+                    role = user.Role.Name
                 }).ToList();
         }
+
+        public List<UserView> GetUsers(Role role)
+        {
+            return dbContext.Users.Where(user => user.Role.Id == role.Id).
+            Select(user => new UserView
+            {
+                Id = user.Id,
+                Login = user.Login,
+                PersonName = user.Person.FirstName + " " + user.Person.LastName + " " + user.Person.MiddleName,
+                role = user.Role.Name
+            }).ToList();
+        }
+       
 
         public User GetUser(long userId)
         {
             return dbContext.Users.FirstOrDefault(u => u.Id == userId);
+        }
+
+        public User GetUser(string login)
+        {
+            return dbContext.Users.FirstOrDefault(user => user.Login == login);
         }
 
         public User AddUser(User user)
@@ -61,9 +81,8 @@ namespace TestEntityFramework
             return user;
         }
 
-        public List<Person> GetPersons()
-        {
-            return dbContext.Persons.ToList();
-        }
+        
+
+        
     }
 }
