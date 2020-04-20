@@ -15,7 +15,6 @@ namespace TestEntityFramework
     {
         private RunContext runContext;
 
-
         public Form1(RunContext runContext )
         {
             this.runContext = runContext;
@@ -74,5 +73,17 @@ namespace TestEntityFramework
             }
         }
 
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            PersonFormContext personFormContext = new PersonFormContext
+            {
+                Persons = runContext.PersonRepository.GetPersons()
+            };
+
+            using (PersonForm personForm = new PersonForm(personFormContext)) 
+            {
+                personForm.ShowDialog();
+            }
+        }
     }
 }

@@ -20,11 +20,9 @@ namespace TestEntityFramework
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            // MyAppContext myAppContext = new MyAppContext(); //пока выкинул MyAppContext из приложения
 
             Application.Run(new RunContext(dbContext));
 
-            //Application.Run(new Form1((new UsersRepository(dbContext)), new RolesRepository(dbContext)));
         }
     }
 }

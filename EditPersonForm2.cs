@@ -10,17 +10,13 @@ using System.Windows.Forms;
 
 namespace TestEntityFramework
 {
-    public partial class PersonForm : Form
+    public partial class EditPersonForm2 : Form
     {
-        PersonFormContext personFormContext;
-
-        public PersonForm(PersonFormContext personFormContext)
+        public EditPersonForm2()
         {
-            this.personFormContext = personFormContext;
-            
             InitializeComponent();
-
-            dataGridView1.DataSource = personFormContext.Persons;
         }
+
+ 
     }
 }

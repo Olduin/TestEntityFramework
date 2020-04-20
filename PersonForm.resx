@@ -121,26 +121,6 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tsbAddUser.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAD9SURBVDhPpZNBDoIwEEV7Ak8jiSfgFJzIJUvXnoANXsFT
-        mLBSXFRDYOGCyqsdM0CJMUzykzL9/zMzbc002rZNuq47NE1zsda+AGty7AXaPPq+3wyEY1VVLs9zl2WZ
-        S9PUgzU59uDADbJPkBj+cC6KwgvK8uRu13oEcuzBgTsywVXEdX33god9zkBeTNCIOKG0mHi333poAzEJ
-        7SSG4dCflC3kmAGAAxcNWsOEGdJUDGIGQKpAazgmPsRAREvQBmjXG+gWxESgRQLhfVtYPcTVxxjuws+L
-        pMWji0QsXWUtJidiuNH3gCul0d9fj0kHfTEcJswxAdbk2Au0EMa8Af3pwIwHb7SVAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="toolStripLabelFilter.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        xAAADsQBlSsOGwAAAOdJREFUOE/tkj0OgkAUhLf2DJ7DA1DQU1pyCug5AuEWJhIu4ZoQe7WgE5tdNCFr
-        +dzZ7AoGiH+tk0yyee+b4ZcppegXmwLP876yKZBSku/7xDdbujTXtwwWGXcHq6IoKAgCOuyPo4G+wYBF
-        BlkUzLR3WZZRGIZUn86jQRg7MGCRQZZB+jBv27aO45iiKCIpmkEYM+zAgEXGhJ30YCGEuOEKaZoOCjDD
-        DgxYG3uWXiyrqjLPmK/zRxhnzLADY/FxaSDhnJu37ApwLssS4cRi0yLq/g1X4L65tqVe6F/QFfT9ccGE
-        LeHE2B1HkysoK8qfmQAAAABJRU5ErkJggg==
-</value>
-  </data>
   <data name="toolStripButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

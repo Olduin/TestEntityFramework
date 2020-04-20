@@ -30,7 +30,7 @@ namespace TestEntityFramework
 
             //заглушка для отладки
 #if DEBUG
-            CurrentUser = UsersRepository.GetUser("Petr");
+           // CurrentUser = UsersRepository.GetUser("Petr");
 #endif
             SwitchContext();
         }
