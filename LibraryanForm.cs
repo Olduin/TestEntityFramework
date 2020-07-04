@@ -11,11 +11,11 @@ using TestEntityFramework.Models;
 
 namespace TestEntityFramework
 {
-    public partial class Form1 : Form
+    public partial class LibraryanForm : Form
     {
         private RunContext runContext;
 
-        public Form1(RunContext runContext )
+        public LibraryanForm(RunContext runContext )
         {
             this.runContext = runContext;
 

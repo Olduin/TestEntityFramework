@@ -30,7 +30,7 @@ namespace TestEntityFramework
 
             //заглушка для отладки
 #if DEBUG
-           // CurrentUser = UsersRepository.GetUser("Petr");
+            CurrentUser = UsersRepository.GetUser("Petr");
 #endif
             SwitchContext();
         }
@@ -70,7 +70,7 @@ namespace TestEntityFramework
             switch (CurrentUser.Role.Name)
             { 
                 case "Работник отдела кадров":
-                    form = new Form1(this);
+                    form = new LibraryanForm(this);
                     form.FormClosed += OnFormClosed;
                     form.Show();
                     break;
