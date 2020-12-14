@@ -7,40 +7,80 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestEntityFramework.Models;
 
 namespace TestEntityFramework
 {
     public partial class EditUserForm : Form
     {
-        private User user;
-        private MyAppContext myAppContext;
-        public delegate void UserActionHandler(object sender, EventArgsUserAction e);
 
-        public EditUserForm(MyAppContext myAppContext, User user)
+        private EditUserContext editUserContext;
+
+        public EditUserForm(EditUserContext editUserContext)
         {
-            this.myAppContext = myAppContext;
-            this.user = user;
-
+            this.editUserContext = editUserContext;
             InitializeComponent();
+
+            tbId.DataBindings.Add("Text", editUserContext.User, "Id");
+            tbLogin.DataBindings.Add("Text", editUserContext.User, "Login");
+            tbPassword.DataBindings.Add("Text", editUserContext.User, "Password");
+
+            cbPersons.DisplayMember = "FullName";
+            cbPersons.ValueMember = "Id";
+            cbPersons.DataSource = editUserContext.Persons;
+
+            cbRole.DisplayMember = "Name";
+            cbRole.ValueMember = "Id";
+            cbRole.DataSource = editUserContext.Roles;
+
+            if (editUserContext.User?.Person != null)
+            {
+                var currentPerson = editUserContext.Persons.FirstOrDefault(p => p == editUserContext.User.Person);
+
+                if (currentPerson != null) 
+                    cbPersons.SelectedItem = currentPerson;
+            }
+
+            cbPersons.SelectedIndexChanged += OnPersonChanged;
+
+            if (editUserContext.User?.Role != null)
+            {
+                var currentRole = editUserContext.Roles.FirstOrDefault(r => r == editUserContext.User.Role);
+
+                if (currentRole != null)
+                    cbRole.SelectedItem = currentRole;
+            }
+
+            cbRole.SelectedIndexChanged += OnRoleChanged;
         }
 
-        public event UserActionHandler UserAction;
+        private void OnPersonChanged(object sender, EventArgs e)
+        {
+            Person person = cbPersons.SelectedItem as Person;
+
+            if (editUserContext.User.Person == person) return;
+
+            editUserContext.User.Person = person;
+        }
+
+        private void OnRoleChanged(object sender, EventArgs e)
+        {
+            Role role = cbRole.SelectedItem as Role;
+
+            if (editUserContext.User.Role == role) return;
+
+            editUserContext.User.Role = role;
+        }
+                    
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            user.Login = tbUserName.Text;
-            user.Password = tbPassword.Text;
-
-            if (UserAction == null)
-                return;
-            UserAction(this, new EventArgsUserAction(FormUserAction.Save));
+            this.DialogResult = DialogResult.OK;
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            if (UserAction == null)
-                return;
-            UserAction(this, new EventArgsUserAction(FormUserAction.Cansel));
-        }
     }
 }
