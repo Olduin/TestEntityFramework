@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,13 +10,37 @@ using System.Windows.Forms;
 
 namespace TestEntityFramework
 {
-    public partial class EditPersonForm2 : Form
+    public partial class EditUserForm : Form
     {
-        public EditPersonForm2()
+        private User user;
+        private MyAppContext myAppContext;
+        public delegate void UserActionHandler(object sender, EventArgsUserAction e);
+
+        public EditUserForm(MyAppContext myAppContext, User user)
         {
+            this.myAppContext = myAppContext;
+            this.user = user;
+
             InitializeComponent();
         }
 
- 
+        public event UserActionHandler UserAction;
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            user.Login = tbUserName.Text;
+            user.Password = tbPassword.Text;
+
+            if (UserAction == null)
+                return;
+            UserAction(this, new EventArgsUserAction(FormUserAction.Save));
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            if (UserAction == null)
+                return;
+            UserAction(this, new EventArgsUserAction(FormUserAction.Cansel));
+        }
     }
 }
